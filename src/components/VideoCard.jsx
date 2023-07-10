@@ -5,7 +5,6 @@ import {CheckCircle} from '@mui/icons-material'
 import { demoThumbnailUrl,demoChannelTitle,demoChannelUrl,demoVideoTitle,demoVideoUrl } from "../utils/constants";
 
 const VideoCard = ({video:{id:{videoId},snippet}}) => {
-    console.log("video",videoId)
   return (
     <Card
       sx={{
@@ -18,8 +17,8 @@ const VideoCard = ({video:{id:{videoId},snippet}}) => {
         <CardMedia
           alt={snippet?.title}
           sx={{
-            height: '180px',
-            width: { sm: "220px", xs: "100%"  },
+            height: '130px',
+            width: { sm: "229px", xs: "100%"  },
           }}
           image={snippet?.thumbnails?.high?.url || demoThumbnailUrl}
         />

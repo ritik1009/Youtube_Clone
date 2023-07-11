@@ -11,7 +11,7 @@ const options = {
   }
 };
 
-export const fetchFormApi = async(url)=>{
+export const fetchFormApi = async(url)=>{ 
     const {data}=await axios.get(`${BASE_URL}/${url}`,options)
     return data
 }

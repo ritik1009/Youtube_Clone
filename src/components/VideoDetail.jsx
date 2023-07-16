@@ -4,28 +4,24 @@ import ReactPlayer from "react-player";
 import { Typography, Box, Stack } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
 
-import {Videos} from './index';
+import { Videos, Loader } from "./index";
 import { fetchFormApi } from "../utils/fetchFormApi";
 
 const VideoDetail = () => {
   const [videoDetails, setvideoDetails] = useState(null);
   const [videos, setVideos] = useState(null);
-
-  const {id} = useParams();
+  const { id } = useParams();
   useEffect(() => {
-    const get_data = () => {
-      fetchFormApi(`videos?part=snippet,statistics&id=${id}`)
-        .then((data) => setvideoDetails(data.items[0]))
-        .catch((err) => console.log(err));
+    fetchFormApi(`videos?part=snippet,statistics&id=${id}`).then((data) =>
+      setvideoDetails(data.items[0])
+    );
 
-      fetchFormApi(
-        `search?part=snippet&relatedToVideoId=${id}&type=video`
-      ).then((data) => setVideos(data.items));
-    };
-    get_data();
-  }, [id, videoDetails,videos]);
+    fetchFormApi(`search?part=snippet&relatedToVideoId=${id}&type=video`).then(
+      (data) => setVideos(data.items)
+    );
+  }, [id,videos]);
 
-  if (!videos?.snippet) return "loading";
+  if (!videos?.snippet) return <Loader />;
   
   return (
     <Box minHeight={"95vh"}>
